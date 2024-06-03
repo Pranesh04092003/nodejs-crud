@@ -11,6 +11,9 @@ const port = 3000;
 //DB connect
 MongoDB();
 
+//middleware to json reponse  "data understanding method "
+app.use(express.json());
+
 //middlewares     `CLIENT ->MIDDLEWARE ->SERVER`  method for middleware is --->"use" 
 
 app.use('/',routemovie)
