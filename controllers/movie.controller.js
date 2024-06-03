@@ -1,3 +1,4 @@
+import Movies from "../models/movie.model.js";
 //here we are adding the controller for the router 
 
 /*
@@ -25,15 +26,43 @@ export const movieIndex = (req, res) => {
 }
 
 
-export const movieCreate=(req, res) => {
+export const movieCreate=async (req, res) => {
   // Create operation logic
         //`id,movie,descp`
   //requesting 
   console.log(req.body);
+
+  //validate to DB
+
+    /*  new Movies({
+      tittle: req.body.tittle,
+      desc: req.body.desc
+    })
+    */   //add the const `newMovies`
+    const newMovies=  new Movies({
+      tittle: req.body.tittle,
+      desc: req.body.desc
+    });
+
+    //await is used for the network operations  "when we use `await` we should add the `async`  "
+    //save the data
+    // `await newMovies.save();  `
+    //now create the const to save it
+    //const Movies=await newMovies.save();
+
   // response
-  return res.json(req.body);
+  //return res.json(req.body);
+
+  //for sucess and error we use `try catch `
+
+  try {
+    const Movies=await newMovies.save();
+    return res.status (201).json (Movies);
+    } catch (error) {
+    return res.status(400).json({ message: error.message });
+    }
  
-}
+};
 
 
 
