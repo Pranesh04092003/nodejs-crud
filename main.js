@@ -1,7 +1,7 @@
 //import the express
 import express  from "express";
 //middleware path
-import routemovie from "./routes/route.js"
+import routemovie from "./routes/movie.route.js"
 
 const app = express();
 
