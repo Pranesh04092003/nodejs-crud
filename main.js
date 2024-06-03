@@ -1,32 +1,15 @@
-const express = require("express");
-
+//import the express
+import express  from "express";
+//middleware path
+import routemovie from "./routes/route.js"
 
 const app = express();
 
 const port = 3000;
 
-//CRUD 
+//middlewares     `CLIENT ->MIDDLEWARE ->SERVER`  method for middleware is --->"use" 
 
-//read
-app.get('/movie',(req,res)=>{
-  
-});
-
-//Create
-app.push('/movie',(req,res)=>{
-  
-});
-
-//Update
-app.put('movie:id',(req,res)=>{
-  
-});
-
-//Delete
-app.delete('/movie:id',(req,res)=>{
-  
-});
-
+app.use('/',routemovie)
 
 app.listen(port,()=>{
   console.log(`server is running on port http://localhost:${port}`);
