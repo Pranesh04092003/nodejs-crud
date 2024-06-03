@@ -5,8 +5,26 @@ const app = express();
 
 const port = 3000;
 
-app.get('/',(req,res)=>{
-  res.json({msg : "hello da"});
+//CRUD 
+
+//read
+app.get('/movie',(req,res)=>{
+  
+});
+
+//Create
+app.push('/movie',(req,res)=>{
+  
+});
+
+//Update
+app.put('movie:id',(req,res)=>{
+  
+});
+
+//Delete
+app.delete('/movie:id',(req,res)=>{
+  
 });
 
 
