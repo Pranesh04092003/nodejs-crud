@@ -27,7 +27,12 @@ export const movieIndex = (req, res) => {
 
 export const movieCreate=(req, res) => {
   // Create operation logic
-  res.send('create new movie');
+        //`id,movie,descp`
+  //requesting 
+  console.log(req.body);
+  // response
+  return res.json(req.body);
+ 
 }
 
 export const movieUpdate=(req, res) => {
