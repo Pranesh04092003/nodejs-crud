@@ -2,10 +2,14 @@
 import express  from "express";
 //middleware path
 import routemovie from "./routes/movie.route.js"
+import MongoDB from "./lib/db.js";
 
 const app = express();
 
 const port = 3000;
+
+//DB connect
+MongoDB();
 
 //middlewares     `CLIENT ->MIDDLEWARE ->SERVER`  method for middleware is --->"use" 
 
