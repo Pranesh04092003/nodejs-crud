@@ -1,5 +1,12 @@
 //import the express
 import express from "express";
+import { 
+  movieCreate,
+  movieDelete,
+  movieIndex,
+  movieUpdate
+} from "../controllers/movie.controller.js";
+
 
 //router path configuration
 const router = express.Router();
@@ -12,25 +19,13 @@ the parent is in the main.js ---> middleware `movie`  that is --> app.use('/movi
 
 //further we removed `/movie` from the main.js--to look the url short 
 
-router.get('/movie', (req, res) => {
-  // Read operation logic
-  res.send('get all movie');
-});
+router.get('/movie',movieIndex );//since we added `CONTROLLER ` in the req,res we add the  what name we assigned in "controller.js"   ---
 
-router.post('/movie', (req, res) => {
-  // Create operation logic
-  res.send('create new movie');
-});
+router.post('/movie',movieCreate);
 
-router.put('/movie:id', (req, res) => {
-  // Update operation logic
-  res.send('updated the movie');
-});
+router.put('/movie:id',movieUpdate);
 
-router.delete('/movie:id', (req, res) => {
-  // Delete operation logic
-  res.send('deleted the movie');
-});
+router.delete('/movie:id',movieDelete );
 
 //export the data  
 export default router;
