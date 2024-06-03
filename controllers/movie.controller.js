@@ -35,6 +35,8 @@ export const movieCreate=(req, res) => {
  
 }
 
+
+
 export const movieUpdate=(req, res) => {
   // Update operation logic
   res.send('updated the movie');
