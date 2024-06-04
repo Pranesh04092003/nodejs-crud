@@ -20,9 +20,14 @@ We create the constant to store it   and  export it since more router are there 
 
 */ 
 
-export const movieIndex = (req, res) => {
+export const movieIndex =async (req, res) => {
   // Read operation logic
-  res.send('get all movie');
+ try {
+  const Movie=await Movies.find()
+  res.json(Movie)
+ } catch (error) {
+    res.json(500).json({message: error.message})
+ }
 }
 
 
@@ -66,13 +71,50 @@ export const movieCreate=async (req, res) => {
 
 
 
-export const movieUpdate=(req, res) => {
-  // Update operation logic
-  res.send('updated the movie');
+export const movieUpdate=async(req, res) => { 
+  // Validate the user input
+  try {
+    const newupdatedmovies = await Movies.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+    tittle: req.body.tittle,
+    desc: req.body.desc,
+    },
+    {
+        new:true
+    }
+  );
+    res.status (200).json (newupdatedmovies );
+    } catch (error) {
+    res.status(400).json({ message: error.message });
+    }
 }
 
 
-export const movieDelete=(req, res) => {
+//find particular movie by Id
+
+export const movieDetail=async(req,res)=>{
+  try {
+    const Movie= await Movies.findById(req.params.id);
+    if(Movie==null){
+     return res.status(404).json({message:"cannot find movie"});
+    }
+    else{
+      res.json(Movie)
+    }
+  } catch (error) {
+   return res.status(500).json({message:error.message}) 
+  }
+}
+
+
+export const movieDelete=async(req, res) => {
   // Delete operation logic
-  res.send('deleted the movie');
+  const movieId = req.params.id;
+  const foundMovie = Movies.findOne({ _id: movieId });
+  try {
+  await Movies.deleteMany({ _id: movieId });
+  res.json({ message: "Movie deleted!" });
+  } catch (error){
+  res.status(500).json({ message: error.message });}
 }

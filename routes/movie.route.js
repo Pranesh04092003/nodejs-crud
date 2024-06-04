@@ -3,6 +3,7 @@ import express from "express";
 import { 
   movieCreate,
   movieDelete,
+  movieDetail,
   movieIndex,
   movieUpdate
 } from "../controllers/movie.controller.js";
@@ -23,9 +24,11 @@ router.get('/movie',movieIndex );//since we added `CONTROLLER ` in the req,res w
 
 router.post('/movie',movieCreate);
 
-router.put('/movie:id',movieUpdate);
+router.get('/movie/:id',movieDetail);
 
-router.delete('/movie:id',movieDelete );
+router.put('/movie/:id',movieUpdate);
+
+router.delete('/movie/:id',movieDelete );
 
 //export the data  
 export default router;
